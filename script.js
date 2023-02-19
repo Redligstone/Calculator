@@ -13,8 +13,10 @@ let operatorPressed = false;
 let delPressed = false;
 let acPressed = false;
 
+//The preInput variable is used to keep track of the current input value that the user has entered before an operator button is clicked.
 let preInput = ''
 
+//The equals() function is responsible for calculating the result of an arithmetic operation. It takes the current value of the input and uses the eval() function to evaluate the expression. If an error occurs during the evaluation of the expression, an "Invalid input" message is displayed on the calculator screen.
 function equals(){
     try{
         currentValue = preInput
@@ -55,12 +57,15 @@ function equals(){
     }
 }
 
+//The reset() function is used to reset the input and output values of the calculator.
 function reset(){
     preInput = '';
     output.innerHTML = '';
     input.style.fontSize = '50px';
     output.style.fontSize = '25px';
 }
+
+//The continueInput() function is used to continue an arithmetic operation by taking the result of the previous calculation and using it as the input for the next calculation.
 function continueInput(){
     preInput = output.innerHTML
     output.innerHTML = '';
@@ -69,6 +74,7 @@ function continueInput(){
     output.style.fontSize = '25px';
 }
 
+//This loop adds a click event listener to each element in the functions array. When the element is clicked, the function checks if the inner HTML of the element is 'AC' or 'del' and performs certain actions based on that.
 for (let func of functions ){
     func.addEventListener('click', ()=>{
     if(func.innerHTML == 'AC'){
@@ -84,6 +90,7 @@ for (let func of functions ){
             output.innerHTML = ''
         }
     }
+
     if(func.innerHTML.toLowerCase() == 'del'){
         if(preInput.length < 2 && input.innerHTML.length < 2|| preInput === '' && input.innerHTML ==='' && output.innerHTML == undefined){
             output.innerText = ''
@@ -92,7 +99,7 @@ for (let func of functions ){
         if(preInput ==='Invalid input' ){
             preInput = '';
             input.innerHTML = ''
-        }
+        } 
         else{
         delPressed = true;
         let inputValue = preInput.split('');
@@ -114,6 +121,8 @@ for (let func of functions ){
     }
     })
 }
+
+//For each button element, it checks the text content of the button and performs a specific action based on its value.
 for (let button of buttons){
     button.addEventListener('click', ()=>{
         if(button.innerText == '0'){
@@ -185,7 +194,7 @@ for (let button of buttons){
     })
 }
 
-
+//The checkOperators() function checks whether the last character of a given string (preInput) is an operator symbol that is contained in the operatorsArr array. The function first extracts the last character of preInput using the bracket notation to access the last element of the string. Then, it checks whether this character is included in the operatorsArr array using the includes() method. If the last character of the string is an operator symbol, the function returns true, otherwise it returns false.
 let operatorsArr = ['/', '%', '-', '+','*','.'];
 function checkOperators(arr){
     const currentValue = preInput;
@@ -197,6 +206,8 @@ function checkOperators(arr){
     } else return false;
     
 }
+
+//The letOperator() function adds an operator symbol to the input field. The function first checks whether the last character of preInput is not an operator symbol by calling the checkOperators() function. If the last character is not an operator symbol, the function appends the operator symbol to the preInput string and updates the value of the input field. However, if the last character of preInput is an operator symbol, the function removes the last character from preInput and appends the new operator symbol to the modified string, then updates the value of the input field. The function also has a special case when the operator symbol is a "-" sign, in which case it checks that preInput is not already "-".
 function letOperator(operator){
     if(!checkOperators(operatorsArr)){
         if(preInput !== '' && preInput !== 'Invalid input' || operator =='-' ){
@@ -212,6 +223,8 @@ function letOperator(operator){
             input.innerHTML = clearInput(preInput)
     }
 }
+
+//The checkNumbers function checks whether the last character of the preInput is '0' and the second to last character is either '+', '-', '*', '/', or '%'. It also checks whether the preInput value is equal to '0'.
 let checkNumbers = function(){
     let currentValue = preInput; 
     let lastCharacter = currentValue.slice(-1);
@@ -229,6 +242,7 @@ let checkNumbers = function(){
 else{ return false}
 }
 
+//The numbers function sets up event listeners on number buttons of the calculator interface. When a number button is clicked, it first checks whether a valid number can be inputted by calling the checkNumbers function. If the check passes and the button clicked corresponds to a valid number, the number is appended to the preInput and then displayed in the input.
 function numbers(){
     let numArr = ['1','2','3','4','5','6','7','8','9'];
         for (let button of buttons){
@@ -250,6 +264,7 @@ function numbers(){
 }
 numbers()
 
+// Zero function allows to add up to 14 zeros in a number or after a dot. It also checks if the last character of the input is a zero.
 function zero(){
     let currentValue = preInput; 
     let lastCharacter = currentValue.slice(-1);
@@ -312,6 +327,7 @@ function zero(){
     input.innerHTML = clearInput(preInput)
 }
 
+// doubleZero function behaves like zero function but also checks if the last character is an operator and if preInput is empty.
 function doubleZero(){
     let currentValue = preInput; 
     let lastCharacter = currentValue.slice(-1);
@@ -379,6 +395,7 @@ function doubleZero(){
     input.innerHTML = clearInput(preInput)
 }
 
+//the dot function checks if the last character isn't a dot, or if the preinput is empty. It also doesn't allow to add a second dot in the number if it has two digits or less after the dot.
 let dot = function(){
     let currentValue = preInput; 
     let lastCharacter = currentValue.slice(-1);
@@ -406,7 +423,7 @@ let dot = function(){
     ||hasDot && lastCharacter !== '.' 
     && thirdLastCharacter ==='.' 
     && !operators.includes(fifthLastCharacter)
-    
+
     ){
         return true;
     } 
@@ -415,6 +432,8 @@ let dot = function(){
     }
 }
 
+
+//If these conditions are satisfied, the function evaluates the value of preInput using the eval() function, and displays the result in the output element 
 for (elem of buttons){
     elem.addEventListener('click',()=>{
         try{
@@ -440,6 +459,7 @@ for (elem of buttons){
     })
 }
 
+// clearInput function adds CSS class to the operators before displaying the input 
 function clearInput(input){
     let inputArr = input.split('');
     let inputArrLength = inputArr.length;
@@ -459,4 +479,3 @@ function clearInput(input){
     }
     return inputArr.join('');
 }
-
