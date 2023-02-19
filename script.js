@@ -199,11 +199,11 @@ function checkOperators(arr){
 }
 function letOperator(operator){
     if(!checkOperators(operatorsArr)){
-        if(preInput !== '' || operator =='-' ){
+        if(preInput !== '' && preInput !== 'Invalid input' || operator =='-' ){
             preInput += operator;
             input.innerHTML = clearInput(preInput)
         }
-    } else if(preInput !== '-' || preInput === 'Invalid input'){
+    } else if(preInput !== '-' ){
             updatedValue = preInput.split('');
             updatedValue.pop();
             updatedValue = updatedValue.join('');
@@ -278,6 +278,9 @@ function zero(){
     ||lastCharacter === '0' && secondLastCharacter === '%'
     ||lastCharacter === '0' && secondLastCharacter === '*'){
     return
+    }
+    else if(currentValue === 'Invalid input'){
+        return;
     }
     else if (hasDot && lastCharacter !== '0') {
         preInput +='0';
