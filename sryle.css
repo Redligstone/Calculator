@@ -1,0 +1,190 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: -webkit-linear-gradient(top, #923d3d 0%,#7a67e4 31%,#d89263 100%);
+    background: -webkit-linear-gradient(top, #99afaa 0%,#aebfbc 22%,#99afab 33%,#8ea6a2 50%,#829d98 67%,#4e5c5a 82%,#313131 100%);
+}
+    
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    width: 400px;
+    border-radius: 1rem;
+    margin: 0 15px;
+}
+
+.calculator{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(32, 32, 32);
+    border-radius: 2rem;
+    overflow: hidden;
+    box-shadow: 6px 4px 8px 1px rgba(235, 115, 78, 0.582);
+}
+.display{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+    background-color: rgb(32, 32, 32);
+    width: calc(100%);
+    height: 30%;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+}
+.display__input, .display__output{
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    height: 30%;
+    width: calc(100% - 20px);
+    margin-right: 15px;
+    text-align: right;
+    unicode-bidi: bidi-override;
+}
+.display__input{
+    margin-right: 15px;
+    position: relative;
+    margin-bottom: 22px;
+}
+.display__output{
+    direction: ltr;
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.text__output{
+    direction: ltr;
+}
+
+div[type="text"].text__input{
+    color: rgb(215, 216, 216);
+    width: 100%;
+    padding-right: 5px;
+    white-space: nowrap;
+    overflow-x: auto;
+    margin-bottom: 0px;
+    font-size: 50px;
+    transition: all ;
+    transition-duration:0.7s ease-in;
+    position: absolute;
+    top: 30px;
+}
+div[type="text"].text__output{
+    color: rgb(215, 216, 216);
+    width: 100%;
+    padding-right: 5px;
+    font-size: 25px;
+    margin-bottom: 20px;
+    transition: all;
+    transition-duration: 0.7s ease-out;
+    position: absolute;
+    top: 0px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+
+.calculator__buttons{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    text-align: center;
+    width: 100%;
+    row-gap: 10px;
+    column-gap: 7px;
+    padding: 2%;
+}
+.button{
+    font-weight: 900;
+    cursor: pointer;;
+    padding: 19%;
+    font-size: 20px;
+    background-color: rgb(71, 71, 71);
+    color: aliceblue;
+    border-radius: 20px;
+}
+.button.number{
+    font-size: 21px;
+}
+.button:hover{
+    opacity: 0.8;
+}
+.button:active{
+    opacity: 0.4;
+}
+.button.function{
+    background-color: rgb(49, 49, 49);
+    color: rgb(64, 209, 119);
+}
+.button.operator{
+    background-color: rgb(49, 49, 49);
+    color: rgb(235, 96, 86);
+}
+.button.operator.subtract{
+    font-size: 34px;
+    padding: 8%;
+}
+.button.operator.divide{
+    font-size: 33px;
+    padding: 11%;
+}
+.button.operator.add{
+    font-size: 32px;
+    padding: 12%;
+}
+.button.operator.multiply{
+    font-size: 23px;
+    padding: 20%;
+}
+.button.operator.percent{
+    font-size: 23px;
+    padding: 20%;
+    padding-right: 22%;
+}
+.button.equals{
+    font-size: 38px;
+    padding: 7%;
+    color: aliceblue;
+    background-color: rgb(245, 125, 77);
+} 
+
+.operator{
+    color: rgb(235, 96, 86);
+}
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+@media(max-width:450px){
+    .container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 480px;
+        width: 340px;
+        border-radius: 1rem;
+        margin: 0 15px;
+    }
+}
+
