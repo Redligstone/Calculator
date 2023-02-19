@@ -117,7 +117,7 @@ for (let func of functions ){
 for (let button of buttons){
     button.addEventListener('click', ()=>{
         if(button.innerText == '0'){
-        zero()
+        zero();
         }
         if(button.innerText == '00'){
         doubleZero()
@@ -286,7 +286,8 @@ function zero(){
         preInput +='0';
     }
     else if (lastCharacter === '.' || hasDot) {
-        preInput +='0';}
+        preInput +='0';
+    }
     else if (
         lastCharacter !== '.' && 
         lastCharacter === '0' && secondLastCharacter !== '0' 
@@ -303,8 +304,9 @@ function zero(){
         || lastCharacter === '0' && thirteenththLastCharacter !== '0'
         || lastCharacter === '0' && fourteenthLastCharacter !== '0') {
         
-        preInput +='0';
+        preInput +='0'
     }
+    input.innerHTML = clearInput(preInput)
 }
 
 function doubleZero(){
@@ -371,6 +373,7 @@ function doubleZero(){
         || lastCharacter === '0' && fourteenthLastCharacter !== '0') {
         preInput +='00';
     }
+    input.innerHTML = clearInput(preInput)
 }
 
 let dot = function(){
@@ -421,6 +424,7 @@ for (elem of buttons){
                 output.style.paddingTop = '10px'
                 output.style.top = '0px'
                 displayOutput.style.marginTop = '5px'
+                console.log('cock')
             }
     
             if(elem.innerText !=='=' &&  preInput === 'Invalid input'){
